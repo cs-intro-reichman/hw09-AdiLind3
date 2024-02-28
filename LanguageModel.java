@@ -116,7 +116,7 @@ public class LanguageModel {
         {
             return initialText;
         }
-        String window = initialText.substring(initialText.length()- textLength); //make the window
+        String window = initialText.substring(initialText.length()- windowLength); //make the window
         String generated = window;
         while (generated.length() < (textLength + windowLength))
         {
