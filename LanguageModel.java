@@ -148,6 +148,29 @@ public class LanguageModel {
 
     public static void main(String[] args) {
 		// Your code goes here
+        int windowLength = Integer.parseInt(args[0]);
+        String intialText = args[1];
+        int generatedTextLength = Integer.parseInt(args[2]);
+        Boolean randomGeneration = args[3].equals("random");
+        String filename = args[4];
+
+        LanguageModel lm;
+        if (randomGeneration)
+        {
+            lm =new LanguageModel(windowLength);
+        }
+        else
+        {
+            lm = new LanguageModel(windowLength, 20);
+        
+        }
+
+        lm.train(filename);
+        System.out.println(lm.generate(intialText, generatedTextLength));
+    }
+
+
+        /* 
         String test = " eettimmoc";
         List tlist = new List();
         for(int i = 0; i < test.length(); i++)
@@ -157,5 +180,7 @@ public class LanguageModel {
         LanguageModel a = new LanguageModel(0);
         a.calculateProbabilities(tlist);
         System.out.println(a);
+
     }
+    */
 }
