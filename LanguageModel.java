@@ -40,12 +40,39 @@ public class LanguageModel {
 	// characters in the given list. */
 	public void calculateProbabilities(List probs) {				
 		// Your code goes here
+        int charsum =0;
+        double cphelper = 0;
+        //take the list and sum up how many chars we have in order to calculate p and cp
+        for(int i = 0; i < probs.getSize(); i++)
+        {
+            CharData temp = probs.get(i);
+            charsum = charsum + temp.count;
+        }
+        //calculate p and cp
+        for(int j=0 ; j < probs.getSize(); j++)
+        {
+            CharData temp = probs.get(j);
+            temp.p = (double) temp.count / charsum; //put the p value of each char by taking the count of exist and divison of total numchars
+            temp.cp = (double) (cphelper + temp.p);
+            cphelper = cphelper + temp.p;
+        }
 	}
 
     // Returns a random character from the given probabilities list.
+    
 	public char getRandomChar(List probs) {
 		// Your code goes here
+        double r = Math.random();
+        for(int i = 0; i < probs.getSize(); i++)
+        {
+            if(probs.get(i).cp > r)
+            {
+                return probs.get(i).chr;
+            }
+        }
+        return probs.get(probs.getSize()-1).chr; //in ideal world this command will never happened
 	}
+    
 
     /**
 	 * Generates a random text, based on the probabilities that were learned during training. 
@@ -54,9 +81,12 @@ public class LanguageModel {
 	 * @param numberOfLetters - the size of text to generate
 	 * @return the generated text
 	 */
+
+     
 	public String generate(String initialText, int textLength) {
 		// Your code goes here
 	}
+
 
     /** Returns a string representing the map of this language model. */
 	public String toString() {
@@ -70,5 +100,14 @@ public class LanguageModel {
 
     public static void main(String[] args) {
 		// Your code goes here
+        String test = " eettimmoc";
+        List tlist = new List();
+        for(int i = 0; i < test.length(); i++)
+        {
+            tlist.update(test.charAt(i));
+        }
+        LanguageModel a = new LanguageModel(0);
+        a.calculateProbabilities(tlist);
+        System.out.println(a);
     }
 }
