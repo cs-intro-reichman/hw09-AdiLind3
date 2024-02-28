@@ -62,7 +62,7 @@ public class LanguageModel {
     
 	public char getRandomChar(List probs) {
 		// Your code goes here
-        double r = Math.random();
+        double r = randomGenerator.nextDouble();
         for(int i = 0; i < probs.getSize(); i++)
         {
             if(probs.get(i).cp > r)
