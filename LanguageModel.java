@@ -46,16 +46,17 @@ public class LanguageModel {
          List x = CharDataMap.get(window);
          if (x == null)
          {
-            CharDataMap.put(window, new List());
+            x = new List();
+            CharDataMap.put(window, x);
          }
-            x.update(tempc); //add the tempc to the list or update the count
-            window= window.substring(1) + tempc; // we cut the beginning and than add the char
+        x.update(tempc); //add the tempc to the list or update the count
+        window = window.substring(1) + (tempc); // we cut the beginning and than add the char - this is the new window
          
 
         }
-        for ( List x : CharDataMap.values()) //for each value in the CharDataMap we calculate the p and cp of the list
+        for ( List probs : CharDataMap.values()) //for each value in the CharDataMap we calculate the p and cp of the list
         {
-            calculateProbabilities(x);
+            calculateProbabilities(probs);
         }
     }
        
