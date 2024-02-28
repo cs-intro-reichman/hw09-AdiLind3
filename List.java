@@ -140,7 +140,7 @@ public class List {
         {
             currect= currect.next;
         }
-        return currect.cp;
+        return currect.next.cp;
     }
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */
