@@ -38,17 +38,23 @@ public class LanguageModel {
         String window = "";
         for( int i =0 ; i < windowLength; i++)
         {
-            window = window + file.readChar();
+            if(!file.isEmpty())
+            {
+                window = window + file.readChar();
+            }
+            else{
+                break;
+            }
         }
         while (!file.isEmpty()) 
         {
          char tempc = file.readChar();
-         List x =   CharDataMap.get(window);
+         List x = CharDataMap.get(window);
          if (x == null)
          {
             CharDataMap.put(window, new List());
          }
-            x.update(tempc); //add the char to the list (window)
+            x.update(tempc); //add the tempc to the list or update the count
             window = window + tempc;
             window= window.substring(1); //we add the char tempc and now we cut the beginning
          
