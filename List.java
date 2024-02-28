@@ -136,11 +136,11 @@ public class List {
             throw new IndexOutOfBoundsException();
         }
         Node currect = first;
-        for ( int i = 0; i <=index ; i++)
+        for ( int i = 0; i <index ; i++)
         {
             currect= currect.next;
         }
-        return currect.next.cp;
+        return currect.cp;
     }
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */
