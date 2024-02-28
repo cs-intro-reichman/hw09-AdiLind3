@@ -86,8 +86,9 @@ public class LanguageModel {
         {
             calculateProbabilities(x);
         }
+    }
      */   
-	}
+	
     
 
     // Computes and sets the probabilities (p and cp fields) of all the
