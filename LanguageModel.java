@@ -36,13 +36,14 @@ public class LanguageModel {
 		// Your code goes here
         In file = new In(fileName);
         String window = "";
+        char tempc;
         for( int i =0 ; i < windowLength; i++)
         {
                 window = window + file.readChar();
         }
         while (!file.isEmpty()) 
         {
-         char tempc = file.readChar();
+         tempc = file.readChar();
          List x = CharDataMap.get(window);
          if (x == null)
          {
