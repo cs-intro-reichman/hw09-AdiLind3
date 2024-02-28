@@ -112,8 +112,27 @@ public class LanguageModel {
      
 	public String generate(String initialText, int textLength) {
 		// Your code goes here
+        if(windowLength > initialText.length())
+        {
+            return initialText;
+        }
+        String window = initialText.substring(initialText.length()- textLength); //make the window
+        String generated = window;
+        while (generated.length() < (textLength + windowLength))
+        {
+            List probList = CharDataMap.get(window);
+            if(probList == null) // if the 
+            {
+                return initialText;
+            }
+            char tempRandomChar = getRandomChar(probList); //get the random char that depend of p 
+            generated = generated + tempRandomChar; //add the random char to the result we want
+            window += tempRandomChar; //add one char to window
+            window = window.substring(1); //remove the first char so we just move the window one step forward
+        }
 
-        return "";
+
+        return generated;
 	}
 
 
